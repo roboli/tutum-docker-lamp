@@ -24,7 +24,7 @@ ADD create_mysql_admin_user.sh /create_mysql_admin_user.sh
 RUN chmod 755 /*.sh
 
 # config to enable .htaccess
-ADD apache_default /etc/apache2/sites-available/000-default.conf
+ADD apache_default /etc/apache2/sites-available/default
 RUN a2enmod rewrite
 
 #Enviornment variables to configure php

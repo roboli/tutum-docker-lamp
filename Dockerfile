@@ -1,10 +1,10 @@
-FROM ubuntu:trusty
+FROM ubuntu:12.04.5
 MAINTAINER Roberto Oliveros <robertoliveros@mac.com>
 
 # Install packages
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
-  apt-get -y install supervisor git apache2 libapache2-mod-php5 mysql-server php5-mysql pwgen php-apc php5-mcrypt red5-server && \
+  apt-get -y install supervisor git apache2 libapache2-mod-php5 mysql-server php5-mysql pwgen php-apc php5-mcrypt libtomcat6-java red5-server && \
   echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Add image configuration and scripts

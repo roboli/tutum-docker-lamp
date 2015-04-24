@@ -1,5 +1,5 @@
 FROM ubuntu:trusty
-MAINTAINER Fernando Mayo <fernando@tutum.co>, Feng Honglin <hfeng@tutum.co>
+MAINTAINER Roberto Oliveros <robertoliveros@mac.com>
 
 # Install packages
 ENV DEBIAN_FRONTEND noninteractive
@@ -28,7 +28,6 @@ ADD apache_default /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 
 # Configure /app folder with sample app
-RUN git clone https://github.com/fermayo/hello-world-lamp.git /app
 RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
 
 #Enviornment variables to configure php

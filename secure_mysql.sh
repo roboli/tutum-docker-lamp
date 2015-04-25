@@ -17,6 +17,10 @@ echo "=> Creating MySQL admin user with ${_word} password"
 mysql -uroot -e "CREATE USER 'admin'@'%' IDENTIFIED BY '$PASS'"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION"
 
+ROOT_PASS=${MYSQL_ROOT_PASS:-momo}
+echo "=> Creating MySQL root password..."
+
+mysql -u root -e "UPDATE mysql.user SET Password = PASSWORD('$ROOT_PASS') WHERE User = 'root'"
 
 echo "=> Done!"
 
@@ -26,7 +30,8 @@ echo ""
 echo "    mysql -uadmin -p$PASS -h<host> -P<port>"
 echo ""
 echo "Please remember to change the above password as soon as possible!"
-echo "MySQL user 'root' has no password but only allows local connections"
+echo ""
+echo "And the password for 'root' is $ROOT_PASS  , only for local connections"
 echo "========================================================================"
 
 mysqladmin -uroot shutdown

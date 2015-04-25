@@ -17,6 +17,12 @@ echo "=> Creating MySQL admin user with ${_word} password"
 mysql -uroot -e "CREATE USER 'admin'@'%' IDENTIFIED BY '$PASS'"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION"
 
+CHOFO_PASS=${MYSQL_CHOFO_PASS:-cal04023}
+echo "=> Creating MySQL chofo user..."
+
+mysql -uroot -e "CREATE USER 'chofo'@'%' IDENTIFIED BY '$CHOFO_PASS'"
+mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'chofo'@'%' WITH GRANT OPTION"
+
 ROOT_PASS=${MYSQL_ROOT_PASS:-momo}
 echo "=> Creating MySQL root password..."
 
@@ -32,6 +38,8 @@ echo ""
 echo "Please remember to change the above password as soon as possible!"
 echo ""
 echo "And the password for 'root' is $ROOT_PASS  , only for local connections"
+echo ""
+echo "And the password for 'chofo' is $CHOFO_PASS"
 echo "========================================================================"
 
 mysqladmin -uroot shutdown

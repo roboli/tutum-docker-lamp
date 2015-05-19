@@ -28,6 +28,15 @@ echo "=> Creating MySQL root password..."
 
 mysql -u root -e "UPDATE mysql.user SET Password = PASSWORD('$ROOT_PASS') WHERE User = 'root'"
 
+echo "=> Creating Aru database..."
+
+mysql -u root -e "CREATE DATABASE lms"
+
+echo "=> Installing Aru schema..."
+
+mysql -u root -h localhost lms < /var/www/html/aru/Bases\ de\ Datos/lms.sql
+mysql -u root -h localhost lms < /var/www/html/aru/Bases\ de\ Datos/lms_more.sql
+
 echo "=> Done!"
 
 echo "========================================================================"
@@ -37,9 +46,13 @@ echo "    mysql -uadmin -p$PASS -h<host> -P<port>"
 echo ""
 echo "Please remember to change the above password as soon as possible!"
 echo ""
-echo "And the password for 'root' is $ROOT_PASS  , only for local connections"
+echo "The password for 'root' is $ROOT_PASS  , only for local connections"
 echo ""
-echo "And the password for 'chofo' is $CHOFO_PASS"
+echo "The password for 'chofo' is $CHOFO_PASS"
+echo ""
+echo "Database 'lms' was created"
+echo ""
+echo "The schema for 'lms' database was created"
 echo "========================================================================"
 
 mysqladmin -uroot shutdown

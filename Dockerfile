@@ -20,7 +20,7 @@ ADD supervisord-mysqld.conf /etc/supervisor/conf.d/supervisord-mysqld.conf
 RUN rm -rf /var/lib/mysql/*
 
 # Add MySQL utils
-ADD secure_mysql.sh /secure_mysql.sh
+ADD config_mysql.sh /config_mysql.sh
 RUN chmod 755 /*.sh
 
 # config to enable .htaccess
